@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Meet UI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="meet-container">
+        <header class="meet-header">
+            <h1>Google Meet</h1>
+            <input type="text" id="search" placeholder="Search participant..." onkeyup="filterParticipants()">
+        </header>
+
+        <div id="participants" class="participants-grid"></div>
+    </div>
+
+    <script>
+        const participants = [
+            "Aryan Sharma",
+            "Rahul Gupta",
+            "Aditi Mehta",
+            "Sachin Kumar",
+            "Priya Singh",
+            "Neha Verma",
+            "Ankit Patel",
+            "Rohit Das",
+            "Sneha Roy",
+            "Rahul Kumar",
+        ];
+
+        function displayParticipants(list) {
+            const participantsGrid = document.getElementById("participants");
+            participantsGrid.innerHTML = "";
+
+            list.forEach((name) => {
+                const card = document.createElement("div");
+                card.classList.add("participant-card");
+                card.innerHTML = `<div class="avatar"><p>${name[0]}</p></div><p>${name}</p>`;
+                participantsGrid.append(card);
+            });
+        }
+
+        function filterParticipants() {
+            const searchInput = document.getElementById("search");
+            const searchValue = searchInput.value.toLowerCase();
+            const filteredList = participants.filter((name) => name.toLowerCase().includes(searchValue));
+            displayParticipants(filteredList);
+        }
+
+        displayParticipants(participants);
+    </script>
+</body>
+
+</html>
